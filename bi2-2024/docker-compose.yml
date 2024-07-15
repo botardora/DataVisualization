@@ -1,0 +1,28 @@
+version: '3.4'
+services:
+  grafana:
+    image: grafana/grafana
+    container_name: my_grafana
+    restart: always
+    user: '0'
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./grafana_mappa:/var/lib/grafana
+  influxdb: 
+    image: influxdb:1.8
+    container_name: my_influxdb
+    restart: always
+    ports:
+      - '8086:8086'
+    volumes:
+      - ./influx_mappa:/var/lib/influxdb
+  jupyter:
+    image: jupyter/base-notebook
+    container_name: my_jupyter
+    restart: always
+    user: '0'
+    ports:
+      - '8888:8888'
+    volumes:
+      - .:/home/jovyan/work
